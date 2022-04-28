@@ -27,6 +27,9 @@ RUN git clone https://github.com/blendle/kns.git && \
     chmod +x kns && sudo mv kns /usr/local/bin && \
     chmod +x ktx && sudo mv ktx /usr/local/bin
 
+## add bashrc
+RUN touch /home/gitpod/.bashrc.d/900custom
+
 ## Install Krew
 RUN set -x; cd "$(mktemp -d)" && \
     OS="$(uname | tr '[:upper:]' '[:lower:]')" && \
