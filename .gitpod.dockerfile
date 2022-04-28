@@ -28,7 +28,7 @@ RUN git clone https://github.com/blendle/kns.git && \
     chmod +x ktx && sudo mv ktx /usr/local/bin
 
 ## add bashrc
-RUN touch /home/gitpod/.bashrc.d/900custom
+#RUN touch /home/gitpod/.bashrc.d/900custom
 
 ## Install Krew
 RUN set -x; cd "$(mktemp -d)" && \
@@ -39,7 +39,8 @@ RUN set -x; cd "$(mktemp -d)" && \
     tar zxvf "${KREW}.tar.gz" && \
     ./"${KREW}" install krew
     
-RUN echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> /home/gitpod/.bashrc.d/900custom
+RUN echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> /home/gitpod/.bashrc && \
+    source /home/gitpod/.bashrc
 
 ## Install Krew main plugins
 RUN export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" && \
@@ -52,4 +53,4 @@ RUN export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" && \
     kubectl krew install ingress-nginx
 
 # Add aliases
-RUN echo 'alias k="kubectl"' >> /home/gitpod/.bashrc.d/900custom
+RUN echo 'alias k="kubectl"' >> /home/gitpod/.bashrc
