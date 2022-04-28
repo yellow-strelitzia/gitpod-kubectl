@@ -35,7 +35,7 @@ RUN set -x; cd "$(mktemp -d)" && \
     curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" && \
     tar zxvf "${KREW}.tar.gz" && \
     ./"${KREW}" install krew && \
-    echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> /home/gitpod/.bashrc
+    echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> /home/gitpod/.bashrc.d/900custom
 
 ## Install Krew main plugins
 RUN export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" && \
@@ -48,4 +48,4 @@ RUN export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" && \
     kubectl krew install ingress-nginx
 
 # Add aliases
-RUN echo 'alias k="kubectl"' >> /home/gitpod/.bashrc
+RUN echo 'alias k="kubectl"' >> /home/gitpod/.bashrc.d/900custom
